@@ -96,4 +96,11 @@ sub weeks
     return $self->{WEEKS};
 }
 
+sub match
+{
+    my ($self, $date) = @_;
+    
+    return 0;
+}
+
 1;
