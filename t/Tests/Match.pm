@@ -36,5 +36,6 @@ sub test_last : Test(2) {
     ok($rt->matchDate([2012,1,27]), "2012-01-27 is last friday");
 };
 
+
 1;
 
