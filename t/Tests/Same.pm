@@ -61,4 +61,8 @@ sub test_ignoreDate: Test {
     same('sunday: do a thing', '2013-04-12 do a thing');
 };
 
+sub test_ignoreScheduleDate: Test {
+    same('sunday: do a thing', 'do a thing t:2011-01-01');
+};
+
 1;

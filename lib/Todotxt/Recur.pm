@@ -159,6 +159,7 @@ sub stripTask
     $text =~ s/^\s*\d{4}-\d{1,2}-\d{1,2}\s+//;
 
     $text =~ s/\s+[\@\+]\w+//g;
+    $text =~ s/\s+t:\d{4}-\d{1,2}-\d{1,2}\b//g;
     $text =~ s/\s+/ /g;
     $text =~ s/^ //;
     $text =~ s/ $//;
