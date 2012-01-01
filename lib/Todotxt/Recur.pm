@@ -29,6 +29,7 @@ sub new
     my $class = ref($this) || $this;
     my $self = {};
 
+    $self->{DAILY} = 0;
     $self->{WD} = -1;
     $self->{TASK} = "";
     $self->{WEEKS} = 31;
@@ -51,7 +52,12 @@ sub init
 
 	  my $day = lc($1);
 
-	  if ($day =~ /^((?:(?:first|second|third|fourth|fifth|last)[ \t,]?)+)\s+(.+)$/)
+	  if ($day eq 'daily')
+	    {
+		$self->{DAILY} = 1;
+		return;
+	    }
+	  elsif ($day =~ /^((?:(?:first|second|third|fourth|fifth|last)[ \t,]?)+)\s+(.+)$/)
 	    {
 		my $weeks = 0;
 
@@ -106,6 +112,11 @@ sub weeks
 sub matchDate
 {
     my ($self, $date) = @_;
+
+    if ($self->{DAILY})
+      {
+	  return 1;
+      }
 
     my $time = mktime(0,0,12, $date->[2], $date->[1] - 1, $date->[0] - 1900);
     my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime($time);

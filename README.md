@@ -8,6 +8,10 @@ The recurring tasks are pulled from a `recur.txt` file, living in the same direc
 the syntax:
 
     [week[,week ...] ] day : task
+    
+or
+
+    daily: task    
 
 Where:
 
@@ -24,6 +28,7 @@ an added-on date, however.
     monday: Take out the trash @home
     last saturday: Apply the dog's flea medicine
     first,third friday: Collect and file expenses
+    daily: run the dishwasher
 
 Note that the add-on attempts to be smart about things, so if you ran this on a Sunday when `todo.txt` already contained:
 

@@ -36,6 +36,16 @@ sub test_last : Test(2) {
     ok($rt->matchDate([2012,1,27]), "2012-01-27 is last friday");
 };
 
+sub test_daily : Test(7) {
+    my $rt = Todotxt::Recur->new("daily : do a thing ");
+
+    ok($rt->matchDate([2012,1,21]), "2012-01-21");
+    ok($rt->matchDate([2012,1,22]), "2012-01-22");
+    ok($rt->matchDate([2012,1,23]), "2012-01-23");
+    ok($rt->matchDate([2012,1,24]), "2012-01-24");
+    ok($rt->matchDate([2012,1,25]), "2012-01-25");
+    ok($rt->matchDate([2012,1,26]), "2012-01-26");
+    ok($rt->matchDate([2012,1,27]), "2012-01-27");
+};
 
 1;
-
