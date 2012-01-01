@@ -1,5 +1,9 @@
 package Todotxt::Recur;
 
+use strict;
+use warnings;
+use POSIX;
+
 my %days = (
 	    'sunday' => 0,
 	    'monday' => 1,
@@ -96,11 +100,39 @@ sub weeks
     return $self->{WEEKS};
 }
 
-sub match
+sub matchDate
 {
     my ($self, $date) = @_;
-    
-    return 0;
+
+    my $time = mktime(0,0,12, $date->[2], $date->[1] - 1, $date->[0] - 1900);
+    my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime($time);
+
+    my $matches = ($wday == $self->weekday());
+
+    if ($matches)
+      {
+	  my $weeks = $self->weeks();
+
+	  my $lasttime = mktime(0, 0, 12, 0, $date->[1], $date->[0] - 1900);
+	  my ($lastsec,$lastmin,$lasthour,$lastmday,$lastmon,$lastyear,$lastwday,$lastyday,$lastisdst) = localtime($lasttime);
+	  my $isLast = ($mday > ($lastmday - 7));
+
+	  my $whichweek = 1;
+
+	  $mday -= 7;
+
+	  while ($mday > 0)
+	    {
+		$whichweek *= 2;
+		$mday -= 7;
+	    }
+
+	  my $wantLast = (($weeks & 32) != 0);
+
+	  $matches = ($wantLast && $isLast) || (($weeks & $whichweek) != 0);
+      }
+
+    return $matches;
 }
 
 1;
