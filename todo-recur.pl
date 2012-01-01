@@ -4,7 +4,6 @@ use warnings;
 use strict;
 
 use Todotxt::Recurlist;
-use Data::Dumper;
 
 if ((@ARGV > 0) && ($ARGV[0] eq 'usage'))
   {

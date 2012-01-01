@@ -3,7 +3,6 @@ package Tests::Match;
 use Test::Class;
 use base qw(Test::Class);
 use Test::More;
-use Data::Dumper;
 
 use Todotxt::Recur;
 
