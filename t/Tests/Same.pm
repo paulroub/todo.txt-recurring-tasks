@@ -51,4 +51,14 @@ sub test_ignoreMultiple: Test(2) {
     different('sunday: do a thing +deathstar +skynet @home @road', 'do some thing +skynet +elsewhere @home @work');
 };
 
+sub test_ignorePriority: Test(3) {
+    same('sunday: (A) do a thing', 'do a thing');
+    same('sunday: do a thing', '(B) do a thing');
+    same('sunday: (A) do a thing', '(C) do a thing');
+};
+
+sub test_ignoreDate: Test {
+    same('sunday: do a thing', '2013-04-12 do a thing');
+};
+
 1;

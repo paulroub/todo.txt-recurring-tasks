@@ -75,7 +75,10 @@ sub init
 		die "Can't parse $text\n";
 	    }
       }
-
+    else
+      {
+	  die "Can't parse $text\n";
+      }
 }
 
 
@@ -133,6 +136,33 @@ sub matchDate
       }
 
     return $matches;
+}
+
+sub stripTask
+{
+    my ($self, $text) = @_;
+
+    $text = lc($text);
+
+    $text =~ s/^\s*\([a-z]\)\s+//;
+    $text =~ s/^\s*\d{4}-\d{1,2}-\d{1,2}\s+//;
+
+    $text =~ s/\s+[\@\+]\w+//g;
+    $text =~ s/\s+/ /g;
+    $text =~ s/^ //;
+    $text =~ s/ $//;
+
+    return $text;
+}
+
+sub sameTask
+{
+    my ($self, $text) = @_;
+
+    my $strippedOurs = $self->stripTask($self->{TASK});
+    my $strippedTheirs = $self->stripTask($text);
+
+    return ($strippedOurs eq $strippedTheirs);
 }
 
 1;
