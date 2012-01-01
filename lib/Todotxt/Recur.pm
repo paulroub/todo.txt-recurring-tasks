@@ -75,7 +75,7 @@ sub init
 		die "Can't parse $text\n";
 	    }
       }
-    else
+    elsif ($text =~ /\S/)
       {
 	  die "Can't parse $text\n";
       }

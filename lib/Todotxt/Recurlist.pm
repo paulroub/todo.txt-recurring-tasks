@@ -29,7 +29,7 @@ sub init
 
 sub addList
 {
-    my ($self, $date, $includeDate) = @_;
+    my ($self, $date) = @_;
     my @candidates = ();
     my @toadd = ();
 
@@ -58,14 +58,7 @@ sub addList
 
 	  if (! $found)
 	    {
-		if ($includeDate)
-		  {
-		      push @toadd, $recur->task($date);
-		  }
-		else
-		  {
-		      push @toadd, $recur->task();
-		  }
+		push @toadd, $recur->task();
 	    }
       }
 
