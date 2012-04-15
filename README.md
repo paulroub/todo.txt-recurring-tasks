@@ -1,11 +1,12 @@
-An add-on for Gina Trapani's [todo.txt][todotxt] script, allowing the automatic addition of
-recurring tasks to the todo list.
+An add-on for Gina Trapani's [todo.txt](https://github.com/ginatrapani/todo.txt-cli) script,
+allowing the automatic addition of recurring tasks to the todo list.
 
-Once installed, the `todo.sh recur` command should be run from a `cron` job (or other scheduler), once a day.  Any tasks applicable to
-the current date will be appended to the todo list (if they're not already present).
+Once installed, the `todo.sh recur` command should be run from a `cron` job (or
+other scheduler), once a day.  Any tasks applicable to the current date will be
+appended to the todo list (if they're not already present).
 
-The recurring tasks are pulled from a `recur.txt` file, living in the same directory as `todo.txt`.  Each line in `recur.txt` has
-the syntax:
+The recurring tasks are pulled from a `recur.txt` file, living in the same 
+directory as `todo.txt`.  Each line in `recur.txt` has the syntax:
 
     [week[,week ...] ] day : task
     
@@ -15,12 +16,13 @@ or
 
 Where:
 
-- `week` is an optional list of weeks - "first", "second", "third", "fourth", "fifth" or "last".  Weeks are separated by
-commas __only__ (no spaces).
-- `day` is __one__ of "monday", "tuesday", "wednesday", "thursday", "friday", "saturday" or "sunday".  If a task needs to happen
-on two different days of the week, you'll need two lines.
-- `task` is anything that might appear in a [todo.txt][todotxt] task, including priority, contexts or projects.  Do *not* include
-an added-on date, however.
+- `week` is an optional list of weeks - "first", "second", "third", "fourth", 
+  "fifth" or "last".  Weeks are separated by commas __only__ (no spaces).
+- `day` is __one__ of "monday", "tuesday", "wednesday", "thursday", "friday", 
+  "saturday" or "sunday".  If a task needs to happen on two different days of
+  the week, you'll need two lines.
+- `task` is anything that might appear in a todo.txt task, including priority,
+  contexts or projects.  Do *not* include an added-on date, however.
 
 ## Examples:
 
@@ -30,20 +32,24 @@ an added-on date, however.
     first,third friday: Collect and file expenses
     daily: run the dishwasher
 
-Note that the add-on attempts to be smart about things, so if you ran this on a Sunday when `todo.txt` already contained:
+Note that the add-on attempts to be smart about things, so if you ran this on a
+Sunday when `todo.txt` already contained:
 
     (B) Weekly review of projects list @home
 
-It would notice the task with the same text (ignoring priority, context, project) and add nothing.
+It would notice the task with the same text (ignoring priority, context, 
+project) and add nothing.
 
 ## Installation:
 
-Download the latest [recur archive][tarball], and unpack it in a temporary directory, e.g.
+Download the latest [recur archive](https://github.com/downloads/paulroub/todo.txt-recurring-tasks/Todotxt-Recur-1.02.tar.gz),
+and unpack it in a temporary directory, e.g.
 
     tar zxf recur.1.2.3.tar.gz
     cd recur
 
-If you are using the standard `todo.sh` location for add-ons (`$HOME/.todo.actions.d`), you'll want to run:
+If you are using the standard `todo.sh` location for add-ons 
+(`$HOME/.todo.actions.d`), you'll want to run:
 
     perl Makefile.PL
     make
@@ -52,18 +58,20 @@ If you are using the standard `todo.sh` location for add-ons (`$HOME/.todo.actio
 
 to install the recur script and its component modules.
 
-If your add-ons live elsewhere, you'll need to specify that directory as an `INSTALLSITESCRIPT` option when generating the Makefile.
+There are a few common Perl modules you'll need if you want to run the
+`make test` step: `Test::Harness`, `Test::More` and `Test::Class`. These are 
+not required for normal script operation.
+
+If your add-ons live elsewhere, you'll need to specify that directory as an
+`INSTALLSITESCRIPT` option when generating the Makefile.
 
     perl Makefile.PL INSTALLSITESCRIPT=/some/other/directory
     make
     make test
     sudo make install
 
-(Installing the modules in a user-specific directory, rather than system-wide, calls for setting `LIB=` as appropriate, and is left as
-an exercise for the reader.)
+(Installing the modules in a user-specific directory, rather than system-wide, 
+calls for setting `LIB=` as appropriate, and is left as an exercise for the reader.)
 
-See the general [Creating and Installing Add-Ons][installing] documention to learn where your add-ons live if you're unsure.
-
-[todotxt]: https://github.com/ginatrapani/todo.txt-cli "A simple and extensible shell script for managing your todo.txt file."
-[installing]: https://github.com/ginatrapani/todo.txt-cli/wiki/Creating-and-Installing-Add-ons
-[tarball]: https://github.com/downloads/paulroub/todo.txt-recurring-tasks/Todotxt-Recur-1.01.tar.gz
+See the general [Creating and Installing Add-Ons](https://github.com/ginatrapani/todo.txt-cli/wiki/Creating-and-Installing-Add-ons)
+documentation to learn where your add-ons live if you're unsure.

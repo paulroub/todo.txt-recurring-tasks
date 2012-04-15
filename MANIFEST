@@ -1,5 +1,5 @@
 MANIFEST
-README
+README.md
 Makefile.PL
 recur
 lib/Todotxt/Recur.pm
