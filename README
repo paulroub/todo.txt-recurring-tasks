@@ -38,14 +38,31 @@ It would notice the task with the same text (ignoring priority, context, project
 
 ## Installation:
 
-See the general [Creating and Installing Add-Ons][installing] documention to learn where and how to install the `recur` script.
+Download the latest [recur archive][tarball], and unpack it in a temporary directory, e.g.
 
-To rebuild the `recur` script and/or run the tests, you'll need the [PAR::Packer](http://search.cpan.org/dist/PAR-Packer/) Perl module. `sudo cpan PAR::Packer` should
-do the trick.
+    tar zxf recur.1.2.3.tar.gz
+    cd recur
 
-If you'd rather not use the monolothic `recur` script, you can instead copy and rename `todo-recur.pl` and install the `lib` directory's contents in the
-Perl library directory of your choice.
+If you are using the standard `todo.sh` location for add-ons (`$HOME/.todo.actions.d`), you'll want to run:
 
+    perl Makefile.PL
+    make
+    make test
+    sudo make install
+
+to install the recur script and its component modules.
+
+If your add-ons live elsewhere, you'll need to specify that directory as an `INSTALLSITESCRIPT` option when generating the Makefile.
+
+    perl Makefile.PL INSTALLSITESCRIPT=/some/other/directory
+    make
+    make test
+    sudo make install
+
+(Installing the modules in a user-specific directory, rather than system-wide, calls for setting `LIB=` as appropriate, and is left as
+an exercise for the reader.)
+
+See the general [Creating and Installing Add-Ons][installing] documention to learn where your add-ons live if you're unsure.
 
 [todotxt]: https://github.com/ginatrapani/todo.txt-cli "A simple and extensible shell script for managing your todo.txt file."
 [installing]: https://github.com/ginatrapani/todo.txt-cli/wiki/Creating-and-Installing-Add-ons
