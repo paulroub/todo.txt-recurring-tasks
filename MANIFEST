@@ -1,0 +1,14 @@
+MANIFEST
+Makefile.PL
+README.md
+todo-recur
+lib/Todotxt/Recur.pm
+lib/Todotxt/Recurlist.pm
+t/match.t
+t/parse.t
+t/same.t
+t/update.t
+t/tests/Match.pm
+t/tests/Parse.pm
+t/tests/Same.pm
+t/tests/Update.pm
