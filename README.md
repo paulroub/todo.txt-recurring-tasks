@@ -40,6 +40,9 @@ It would notice the task with the same text (ignoring priority, context, project
 
 See the general [Creating and Installing Add-Ons][installing] documention to learn where and how to install the `recur` script.
 
+To rebuild the `recur` script and/or run the tests, you'll need the [PAR::Packer](http://search.cpan.org/dist/PAR-Packer/) Perl module. `sudo cpan PAR::Packer` should
+do the trick.
+
 If you'd rather not use the monolothic `recur` script, you can instead copy and rename `todo-recur.pl` and install the `lib` directory's contents in the
 Perl library directory of your choice.
 
