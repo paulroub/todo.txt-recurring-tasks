@@ -22,9 +22,9 @@ if (! defined $ENV{TODO_DIR})
   {
       die "TODO_DIR environment variable not found\n";
   }
-if (! defined $ENV{TODO_SH})
+if (! defined $ENV{TODO_FULL_SH})
   {
-      die "TODO_SH environment variable not found\n";
+      die "TODO_FULL_SH environment variable not found\n";
   }
 
 my $todofile = $ENV{TODO_FILE};
@@ -66,6 +66,6 @@ my $adds = $rl->addList($date);
 
 for my $add (@$adds)
   {
-      my @args = ($ENV{TODO_SH}, "command", "add", $add);
+      my @args = ($ENV{TODO_FULL_SH}, "command", "add", $add);
       (system(@args) == 0) or die "system @args failed: $?";
   }
